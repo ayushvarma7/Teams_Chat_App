@@ -1,11 +1,11 @@
-import MyMessage from './MessageForm'
+import MyMessage from './MyMessage'
 import MessageForm from './MessageForm'
 import TheirMessage from './TheirMessage'
 
 const ChatFeed =(props) =>{
     const {chats, activeChat, userName, messages }=props;
 
-    const chat=chats && chats[activeChat]
+    const chat=chats && chats[activeChat];
 
     const renderReadReceipts= (message, isMyMessage)=>{
       return  chat.people.map((person, index)=> person.last_read===message.id && (
@@ -13,21 +13,21 @@ const ChatFeed =(props) =>{
                 key={`read_${index}`}
                 className="read-receipt"
                 style={{float: isMyMessage ? 'right' : 'left', 
-                backgroundImage:`url(${person?.person?.avatar})`
+                backgroundImage: person.person.avatar && `url(${person?.person?.avatar})`
                 }}
             />
-        ))
+        ));
         //the person's last read message is this message
     }
-    console.log( messages);
+    // console.log( messages);
 
     const renderMessages=()=>{
         const keys=Object.keys(messages);
-        console.log(keys);
+        // console.log(keys);
         return keys.map((key, index)=>{
             const message= messages[key];
             const lastMessageKey= index===0 ? null: keys[index-1];
-            const isMyMessage=userName===message.sender.userName;  //note  this line
+            const isMyMessage=userName===message.sender.username;  //note  this line
 
             return(
                 <div key={`msg_${index}`} style={{width:'100%'}}>
