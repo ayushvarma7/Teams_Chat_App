@@ -19,10 +19,10 @@ const ChatFeed =(props) =>{
             return(
                 <div key={`msg_${index}`} style={{width:'100%'}}>
                     <div className="message-block">
-                        {̥
+                        {
                             isMyMessage  //if the message is our then,
-                            ? <MyMessage/>  //this will render our message 
-                            : <TheirMessage/> //otherwise it renders senders message
+                            ? <MyMessage message={message}/>  //this will render our message 
+                            : <TheirMessage message={message} lastMessage={messages[lastMessageKey]}/> //otherwise it renders senders message
                         }
                     </div>
                     <div className="read-receipts" style={{marginRight: isMyMessage ? '18px': '0px', marginLeft: isMyMessage ? '0px': '68px'}}>
